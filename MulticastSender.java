@@ -1,5 +1,3 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 import java.io.IOException;
 import java.net.*;
 import java.util.Scanner;
@@ -34,7 +32,7 @@ public class MulticastSender extends Thread {
         Scanner scanner = new Scanner(System.in);
         char[] votes = new char[5];
 
-        // Prompt the user to enter votes
+        // user enter vote
         for (int i = 0; i < 5; i++) {
             System.out.print("Enter vote for electorate " + (i+1) + " (A/B): ");
             String input = scanner.nextLine().toUpperCase();
@@ -46,13 +44,13 @@ public class MulticastSender extends Thread {
             }
         }
 
-        // Send votes using multicast sender
+        // Send votes 
         for (char vote : votes) {
             MulticastSender sender = new MulticastSender(vote);
             sender.start();
         }
 
-        // Receive winner message from MulticastReceiver
+        // Receive winner msg
         try {
             InetAddress group = InetAddress.getByName(MULTICAST_GROUP);
             try (MulticastSocket socket = new MulticastSocket(PORT)) {
